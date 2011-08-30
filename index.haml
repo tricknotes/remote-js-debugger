@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %script{src: '/socket.io/socket.io.js'}
+    :coffee
+      socket = io.connect('/')
+      socket.emit 'set name', 'tricknotes'
+      socket.on 'log', (data) ->
+        console.log(data)
+  %body
