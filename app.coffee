@@ -39,8 +39,8 @@ io.sockets.on 'connection', (socket) ->
       socket.join name
       socket.emit 'ready'
 
-  socket.on 'client-error', (data) ->
-    console.log 'client-error', data
-    socket.get 'client-name', (err, name) ->
-      console.log 'client-name', name, data
-      socket.broadcast.to(name).emit 'log', data
+  for event in ['client-error', 'client-log']
+    socket.on event, (data) ->
+      console.log event, data
+      socket.get 'client-name', (err, name) ->
+        socket.broadcast.to(name).emit 'log', data
