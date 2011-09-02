@@ -19,6 +19,9 @@ app.get '/client', (req, res) ->
 app.get '/:name/connect.js', (req, res) ->
   res.header 'Content-Type', 'text/javascript'
   res.render __dirname+'/connect.coffee', layout: false , name: req.params.name
+app.get '/:name/log', (req, res) ->
+  io.sockets.to(req.params.name).emit 'log', JSON.parse(req.query.data)
+  res.end()
 
 io.sockets.on 'connection', (socket) ->
   socket.on 'set name', (name) ->
