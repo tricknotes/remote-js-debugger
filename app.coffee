@@ -2,6 +2,7 @@ app = require('express').createServer()
 io = require('socket.io').listen(app)
 hamljs = require('hamljs')
 coffee = require('coffee-script')
+suger = require('suger-pod')
 
 app.listen 3000
 
@@ -9,21 +10,7 @@ app.configure ->
   hamljs.filters.coffee = (str) ->
     @javascript(coffee.compile(str))
   app.register '.haml', hamljs
-  app.register '.coffee',
-    compile: (str, _options) ->
-      (locals) ->
-        str = str.replace /@@([a-zA-Z_]+)/, (_, name) ->
-          switch typeof value = locals[name]
-            when 'string'
-              "'#{value.replace(/\n/g, '\\n').replace("'", "\\'")}'"
-            when 'function'
-              "`#{value.toString()}`"
-            when 'object'
-              "`#{JSON.stringify(value)}`"
-            else
-              value
-
-        coffee.compile(str)
+  app.register '.coffee', suger
 
 app.get '/', (req, res) ->
   res.render __dirname+'/index.haml', layout: false
