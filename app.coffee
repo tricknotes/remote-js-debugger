@@ -16,9 +16,10 @@ app.get '/:name/console', (req, res) ->
   res.render __dirname+'/console.haml'
     layout: false
     name: req.params.name
-app.get '/client', (req, res) ->
+app.get '/:name/client', (req, res) ->
   res.render __dirname+'/client.haml'
     layout: false
+    name: req.params.name
 app.get '/:name/connect.js', (req, res) ->
   res.header 'Content-Type', 'text/javascript'
   res.render __dirname+'/connect.coffee'
