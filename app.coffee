@@ -12,8 +12,8 @@ app.configure ->
   app.register '.haml', hamljs
   app.register '.coffee', suger
 
-app.get '/', (req, res) ->
-  res.render __dirname+'/index.haml', layout: false
+app.get '/:name/console', (req, res) ->
+  res.render __dirname+'/console.haml', layout: false, name: req.params.name
 app.get '/client', (req, res) ->
   res.render __dirname+'/client.haml', layout: false
 app.get '/:name/connect.js', (req, res) ->
