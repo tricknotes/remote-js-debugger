@@ -20,11 +20,13 @@ app.get '/:name/client', (req, res) ->
   res.render __dirname+'/client.haml'
     layout: false
     name: req.params.name
-app.get '/:name/connect.js', (req, res) ->
-  res.header 'Content-Type', 'text/javascript'
-  res.render __dirname+'/connect.coffee'
-    layout: false
-    name: req.params.name
+for action in ['connect', 'observe']
+  app.get "/:name/#{action}.js", do (action) ->
+    (req, res) ->
+      res.header 'Content-Type', 'text/javascript'
+      res.render __dirname+'/'+action+'.coffee'
+        layout: false
+        name: req.params.name
 app.get '/:name/log', (req, res) ->
   io.sockets.to(req.params.name).emit 'log', JSON.parse(req.query.data)
   res.end()
