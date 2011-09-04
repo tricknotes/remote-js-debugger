@@ -9,8 +9,8 @@
           background-color: rgba(30, 30, 30, 0.7);
           color: rgb(230, 230, 230);
           position: fixed;
-          width: 960px;
-          height: 300px;
+          width: 99%;
+          height: 50px;
         }
     %script
       var name = '
@@ -29,6 +29,5 @@
           socket.emit 'set name', name
           socket.on 'join', (data) -> panel.text 'Join on: '+data
           socket.on 'log', (data) ->
-            panel.text JSON.stringify(data)
             console.log(data)
   %body
