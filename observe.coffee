@@ -1,7 +1,7 @@
 logging = (args...) ->
   for arg in args
     img = document.createElement 'img'
-    img.src = "/#{@@name}/log/?data=#{encodeURIComponent(JSON.stringify(arg))}"
+    img.src = "//#{@@host}/#{@@name}/log/?data=#{encodeURIComponent(JSON.stringify(arg))}"
 
 window.addEventListener 'error', (e) ->
   {message, lineno, filename} = e

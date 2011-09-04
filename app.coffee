@@ -27,6 +27,7 @@ for action in ['connect', 'observe']
       res.render __dirname+'/'+action+'.coffee'
         layout: false
         name: req.params.name
+        host: req.header('host')
 app.get '/:name/log', (req, res) ->
   io.sockets.to(req.params.name).emit 'log', JSON.parse(req.query.data)
   res.end()
