@@ -1,4 +1,4 @@
-socket = io.connect('/')
+socket = io.connect("//#{@@host}/")
 socket.emit 'set name', @@name
 socket.on 'ready', ->
   window.addEventListener 'error', (e) ->
