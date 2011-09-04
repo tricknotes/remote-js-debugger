@@ -13,18 +13,18 @@ app.configure ->
   app.register '.coffee', suger
 
 app.get '/:name/console', (req, res) ->
-  res.render __dirname+'/console.haml'
+  res.render 'console.haml'
     layout: false
     name: req.params.name
 app.get '/:name/client', (req, res) ->
-  res.render __dirname+'/client.haml'
+  res.render 'client.haml'
     layout: false
     name: req.params.name
 for action in ['connect', 'observe']
   app.get "/:name/#{action}.js", do (action) ->
     (req, res) ->
       res.header 'Content-Type', 'text/javascript'
-      res.render __dirname+'/'+action+'.coffee'
+      res.render action+'.coffee'
         layout: false
         name: req.params.name
         host: req.header('host')
