@@ -2,7 +2,7 @@
 %html
   %head
     %script{type: 'text/javascript', src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'}
-    %script{src: '/socket.io/socket.io.js'}
+    %script{type: 'text/javascript', src: '/socket.io/socket.io.js'}
     %style
       :plain
         .messagePanle {
@@ -14,7 +14,7 @@
         }
     %script
       var name = '
-      =String(name).replace(/'/g, "\\'")
+      = String(name).replace(/'/g, "\\'")
       ';
     :coffee
       do (name) ->
@@ -26,7 +26,6 @@
             .hide()
             .appendTo($('body'))
             .fadeIn 'slow', ->
-          # TODO should render name from req.
           socket.emit 'set name', name
           socket.on 'log', (data) ->
             panel.text JSON.stringify(data)
