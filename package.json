@@ -1,5 +1,5 @@
 {
-  "name": "debugger",
+  "name": "remote-js-debugger",
   "description": "debugger for remote client",
   "version": "0.0.1",
   "author": "Ryunosuke SATO <tricknotes.rs@gmail.com>",
