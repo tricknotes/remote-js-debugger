@@ -37,6 +37,7 @@ io.sockets.on 'connection', (socket) ->
     socket.set 'client-name', name, ->
       socket.join name
       socket.emit 'ready'
+      socket.broadcast.to(name).emit 'join', socket.id
 
   for event in ['client-error', 'client-log']
     socket.on event, (data) ->

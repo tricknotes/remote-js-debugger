@@ -27,6 +27,7 @@
             .appendTo($('body'))
             .fadeIn 'slow', ->
           socket.emit 'set name', name
+          socket.on 'join', (data) -> panel.text 'Join on: '+data
           socket.on 'log', (data) ->
             panel.text JSON.stringify(data)
             console.log(data)
