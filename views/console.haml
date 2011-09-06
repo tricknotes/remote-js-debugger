@@ -1,8 +1,6 @@
 !!! 5
 %html
   %head
-    %script{type: 'text/javascript', src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'}
-    %script{type: 'text/javascript', src: '/socket.io/socket.io.js'}
     %style
       :plain
         .messagePanle {
@@ -12,6 +10,9 @@
           width: 99%;
           height: 50px;
         }
+  %body
+    %script{type: 'text/javascript', src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'}
+    %script{type: 'text/javascript', src: '/socket.io/socket.io.js'}
     %script
       var name = '
       = String(name).replace(/'/g, "\\'")
@@ -30,4 +31,3 @@
           socket.on 'join', (data) -> panel.text 'Join on: '+data
           socket.on 'log', (data) ->
             console.log(data)
-  %body
