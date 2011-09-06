@@ -1,6 +1,7 @@
 !!! 5
 %html
   %head
+    %link{rel: 'stylesheet', type: 'text/css', href: 'http://boedesign.com/demos/gritter/css/jquery.gritter.css'}
     %style
       :plain
         .messagePanle {
@@ -12,6 +13,7 @@
         }
   %body
     %script{type: 'text/javascript', src: 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'}
+    %script{type: 'text/javascript', src: 'http://boedesign.com/demos/gritter/js/jquery.gritter.min.js'}
     %script{type: 'text/javascript', src: '/socket.io/socket.io.js'}
     %script
       var name = '
@@ -30,4 +32,5 @@
           socket.emit 'set name', name
           socket.on 'join', (data) -> panel.text 'Join on: '+data
           socket.on 'log', (data) ->
+            $.gritter.add(title: 'log', text: JSON.stringify(data))
             console.log(data)
